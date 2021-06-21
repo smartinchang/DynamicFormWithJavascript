@@ -1,0 +1,44 @@
+<html>
+	<head>
+		<title>Biểu mẫu động</title>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+	</head>
+	<body lang="vi">
+		<div class="w3-container">
+			<form id="question" method="POST" action="read.php">
+				<h1>BIỂU MẪU ĐỘNG</h1>
+				<input type="text" name="choices[]" id="text1" style="margin-bottom:5px;margin-right:5px;width:85%;"><input type="button" onclick="add_field()" value="+" id="add" style="width:30px">
+				<p align="center"><button type="submit">&nbsp;Nhập&nbsp;</button></p>
+			</form>
+        <script>
+				var position = 1;
+				function add_field()
+				{
+					var form = document.getElementById("question");
+					var new_field = document.createElement("input");
+					new_field.setAttribute("type", "button");
+					new_field.setAttribute("id", "button"+position);
+					new_field.setAttribute("style", "width:30px");
+					new_field.setAttribute("onclick", "delete_field("+position+")");
+					new_field.setAttribute("name", "delete[]");
+					new_field.setAttribute("value", "-");
+					form.insertBefore(new_field, document.getElementById("add"));
+					position++;
+					new_field = document.createElement("input");
+					new_field.setAttribute("type", "text");
+					new_field.setAttribute("id", "text"+position);
+					new_field.setAttribute("name", "choices[]");
+					new_field.setAttribute("style", "margin-bottom:5px;margin-right:5px;width:85%;");
+					form.insertBefore(new_field, document.getElementById("add"));
+				}
+				function delete_field(obj)
+				{
+					document.getElementById("text"+obj).remove();
+					document.getElementById("button"+obj).remove();
+				}
+			</script>
+		</div>
+	</body>
+</html>
